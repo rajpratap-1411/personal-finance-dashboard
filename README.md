@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Personal Finance Dashboard
 
 A Django-based web application for managing personal finances with a comprehensive dashboard.
@@ -183,3 +184,7 @@ See **SETUP_GUIDE.md** for complete instructions in Hindi/English.
 
 This project is open source and available for personal use.
 
+=======
+# personal-finance-dashboard
+Django Personal Finance Dashboard with accounts, transactions, and analytics
+>>>>>>> 428b9ede5df55bbff0b277490bb78871c26ff5b1
