@@ -67,10 +67,10 @@ SECRET_KEY=your-secret-key-here
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Database Configuration
-DB_NAME=personal_finance_db
-DB_USER=postgres
-DB_PASSWORD=1411
+# Database Configuration (Example)
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_PORT=5432
 ```
@@ -183,8 +183,3 @@ See **SETUP_GUIDE.md** for complete instructions in Hindi/English.
 ## License
 
 This project is open source and available for personal use.
-
-=======
-# personal-finance-dashboard
-Django Personal Finance Dashboard with accounts, transactions, and analytics
->>>>>>> 428b9ede5df55bbff0b277490bb78871c26ff5b1
