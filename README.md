@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Personal Finance Dashboard
 
 A Django-based web application for managing personal finances with a comprehensive dashboard.
