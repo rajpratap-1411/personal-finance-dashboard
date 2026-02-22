@@ -3,30 +3,48 @@
 {% block title %}Login - Personal Finance{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-5">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="mb-0"><i class="bi bi-box-arrow-in-right"></i> Login</h4>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="id_username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="id_username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="id_password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </form>
-                <hr>
-                <p class="text-center">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
-            </div>
+<div class="min-h-[calc(100vh-8rem)] flex items-center justify-center py-12 px-4">
+  <div class="w-full max-w-md">
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-8 text-center">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/20 text-white mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
         </div>
+        <h1 class="text-2xl font-bold text-white">Welcome back</h1>
+        <p class="text-indigo-100 text-sm mt-1">Sign in to your account</p>
+      </div>
+      <div class="p-6 sm:p-8">
+        <form method="post" class="space-y-5">
+          {% csrf_token %}
+          <div>
+            <label for="id_username" class="block text-sm font-semibold text-gray-700 mb-1.5">Username</label>
+            <input type="text" name="username" id="id_username" required
+              class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none placeholder-gray-400"
+              placeholder="Enter your username" autocomplete="username">
+          </div>
+          <div>
+            <label for="id_password" class="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
+            <input type="password" name="password" id="id_password" required
+              class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none placeholder-gray-400"
+              placeholder="Enter your password" autocomplete="current-password">
+          </div>
+          {% if form.errors %}
+            <div class="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+              Please enter a correct username and password.
+            </div>
+          {% endif %}
+          <button type="submit" class="w-full inline-flex justify-center items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
+            Sign in
+          </button>
+        </form>
+        <p class="mt-6 text-center text-sm text-gray-600">
+          Don't have an account?
+          <a href="{% url 'register' %}" class="font-semibold text-indigo-600 hover:text-indigo-700">Register here</a>
+        </p>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
-
