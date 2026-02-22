@@ -3,96 +3,113 @@
 {% block title %}{% if object %}Edit{% else %}Add{% endif %} Transaction - Personal Finance{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="mb-0">
-                    <i class="bi bi-{% if object %}pencil{% else %}plus-circle{% endif %}"></i>
-                    {% if object %}Edit Transaction{% else %}Add Transaction{% endif %}
-                </h4>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="id_type" class="form-label">Type <span class="text-danger">*</span></label>
-                        {{ form.type }}
-                        {% if form.type.errors %}
-                            <div class="text-danger">{{ form.type.errors }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_category" class="form-label">Category <span class="text-danger">*</span></label>
-                        {{ form.category }}
-                        {% if form.category.errors %}
-                            <div class="text-danger">{{ form.category.errors }}</div>
-                        {% endif %}
-                        <small class="text-muted">Don't see your category? <a href="/admin/transactions/category/add/" target="_blank">Add one in admin</a></small>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_amount" class="form-label">Amount <span class="text-danger">*</span></label>
-                        {{ form.amount }}
-                        {% if form.amount.errors %}
-                            <div class="text-danger">{{ form.amount.errors }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_date" class="form-label">Date <span class="text-danger">*</span></label>
-                        {{ form.date }}
-                        {% if form.date.errors %}
-                            <div class="text-danger">{{ form.date.errors }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_description" class="form-label">Description</label>
-                        {{ form.description }}
-                        {% if form.description.errors %}
-                            <div class="text-danger">{{ form.description.errors }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check-circle"></i> {% if object %}Update{% else %}Add{% endif %} Transaction
-                        </button>
-                        <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Cancel</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="max-w-2xl mx-auto">
+  <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-5">
+      <h1 class="text-xl font-bold text-white flex items-center gap-2">
+        {% if object %}
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+          Edit Transaction
+        {% else %}
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add Transaction
+        {% endif %}
+      </h1>
+      <p class="text-indigo-100 text-sm mt-1">{% if object %}Update the details below.{% else %}Record income or expense.{% endif %}</p>
     </div>
+    <div class="p-6 sm:p-8">
+      <form method="post" class="space-y-5">
+        {% csrf_token %}
+        <div>
+          <label for="id_type" class="block text-sm font-semibold text-gray-700 mb-1.5">Type <span class="text-red-500">*</span></label>
+          {{ form.type }}
+          {% if form.type.errors %}
+            <p class="mt-1 text-sm text-red-600">{{ form.type.errors.0 }}</p>
+          {% endif %}
+        </div>
+        <div>
+          <label for="id_category" class="block text-sm font-semibold text-gray-700 mb-1.5">Category <span class="text-red-500">*</span></label>
+          {{ form.category }}
+          {% if form.category.errors %}
+            <p class="mt-1 text-sm text-red-600">{{ form.category.errors.0 }}</p>
+          {% endif %}
+          <p class="mt-1.5 text-xs text-gray-500">Don't see your category? <a href="/admin/transactions/category/add/" target="_blank" class="text-indigo-600 hover:underline">Add one in admin</a></p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="id_amount" class="block text-sm font-semibold text-gray-700 mb-1.5">Amount <span class="text-red-500">*</span></label>
+            {{ form.amount }}
+            {% if form.amount.errors %}
+              <p class="mt-1 text-sm text-red-600">{{ form.amount.errors.0 }}</p>
+            {% endif %}
+          </div>
+          <div>
+            <label for="id_date" class="block text-sm font-semibold text-gray-700 mb-1.5">Date <span class="text-red-500">*</span></label>
+            {{ form.date }}
+            {% if form.date.errors %}
+              <p class="mt-1 text-sm text-red-600">{{ form.date.errors.0 }}</p>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <label for="id_description" class="block text-sm font-semibold text-gray-700 mb-1.5">Description</label>
+          {{ form.description }}
+          {% if form.description.errors %}
+            <p class="mt-1 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+          {% endif %}
+        </div>
+        <div class="flex flex-col-reverse sm:flex-row gap-3 pt-2">
+          <a href="{% url 'transaction_list' %}" class="inline-flex justify-center items-center px-5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+            Cancel
+          </a>
+          <button type="submit" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
+            {% if object %}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Update Transaction
+            {% else %}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Add Transaction
+            {% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
 function updateCategories() {
-    const typeSelect = document.getElementById('id_type');
-    const categorySelect = document.getElementById('id_category');
-    const selectedType = typeSelect.value;
-    
-    if (selectedType) {
-        fetch(`/transactions/api/categories/?type=${selectedType}`)
-            .then(response => response.json())
-            .then(data => {
-                categorySelect.innerHTML = '<option value="">Select a category</option>';
-                data.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    categorySelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    }
+  var typeSelect = document.getElementById('id_type');
+  var categorySelect = document.getElementById('id_category');
+  var selectedType = typeSelect && typeSelect.value;
+  if (!selectedType || !categorySelect) return;
+  fetch('/transactions/api/categories/?type=' + encodeURIComponent(selectedType))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      categorySelect.innerHTML = '<option value="">Select a category</option>';
+      data.forEach(function(c) {
+        var opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.name;
+        categorySelect.appendChild(opt);
+      });
+    })
+    .catch(function(e) { console.error('Error:', e); });
 }
-
-// Call on page load if type is already selected
 document.addEventListener('DOMContentLoaded', function() {
-    const typeSelect = document.getElementById('id_type');
-    if (typeSelect.value) {
-        updateCategories();
-    }
+  var typeSelect = document.getElementById('id_type');
+  if (typeSelect) {
+    if (typeSelect.value) updateCategories();
     typeSelect.addEventListener('change', updateCategories);
+  }
 });
 </script>
 {% endblock %}
-

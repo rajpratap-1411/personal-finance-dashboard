@@ -7,24 +7,27 @@ class TransactionForm(forms.ModelForm):
         fields = ['type', 'category', 'amount', 'description', 'date']
         widgets = {
             'type': forms.Select(attrs={
-                'class': 'form-control',
+                'class': 'w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none',
                 'id': 'id_type',
                 'onchange': 'updateCategories()'
             }),
-            'category': forms.Select(attrs={'class': 'form-control', 'id': 'id_category'}),
+            'category': forms.Select(attrs={
+                'class': 'w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none',
+                'id': 'id_category'
+            }),
             'amount': forms.NumberInput(attrs={
-                'class': 'form-control',
+                'class': 'w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none',
                 'step': '0.01',
                 'min': '0.01',
-                'placeholder': 'Enter amount'
+                'placeholder': '0.00'
             }),
             'description': forms.Textarea(attrs={
-                'class': 'form-control',
+                'class': 'w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none resize-none',
                 'rows': 3,
                 'placeholder': 'Optional description'
             }),
             'date': forms.DateInput(attrs={
-                'class': 'form-control',
+                'class': 'w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition outline-none',
                 'type': 'date'
             }),
         }
